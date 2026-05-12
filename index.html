@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Protótipo Android Web</title>
+    <script src="https://copy.sh/v86/libv86.js"></script>
+    <style>
+        body { background: #202124; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        #screen_container { border: 8px solid #3c4043; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        canvas { display: block; }
+        .controls { margin-top: 20px; }
+        button { background: #8ab4f8; border: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #aecbfa; }
+    </style>
+</head>
+<body>
+
+    <h2>Meu Emulador Android Web v1.0</h2>
+    
+    <div id="screen_container">
+        <canvas id="screen"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="bootAndroid()">Ligar Android</button>
+    </div>
+
+    <script>
+        function bootAndroid() {
+            window.emulator = new V86Starter({
+                canvas: document.getElementById("screen"),
+                memory_size: 512 * 1024 * 1024, // 512MB RAM
+                vga_memory_size: 8 * 1024 * 1024,
+                // Link para a imagem do Android (Você deve substituir pelo seu link após baixar)
+                cdrom: { url: "https://seu-servidor.com/android-x86.iso" }, 
+                bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
+                vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
+                autostart: true,
+            });
+        }
+    </script>
+</body>
+</html>
